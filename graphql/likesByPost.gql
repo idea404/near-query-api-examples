@@ -1,0 +1,11 @@
+query IndexerQuery {
+  posts(where: {post_likes_aggregate: {count: {predicate: {_gt: 0}}}}) {
+    id
+    account_id
+    post_likes_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}
