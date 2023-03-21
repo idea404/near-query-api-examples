@@ -1,0 +1,5 @@
+query MyQuery {  somepublicaddress_near_simple_indexer_indexer_storage {
+    function_name
+    key_name
+    value
+}}

@@ -1,4 +1,6 @@
-function getBlock(block, context) {
+import { Block } from "@near-lake/primitives"
+
+async function getBlock(block: Block, context) {
   const SOCIAL_DB = "social.near";
   function base64decode(encodedValue) {
     let buff = Buffer.from(encodedValue, "base64");
