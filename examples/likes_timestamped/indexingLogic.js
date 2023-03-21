@@ -19,6 +19,7 @@ async function getBlock(block, context) {
         }))
     );
 
+  let hasLikes = false; 
   if (nearSocialPosts.length > 0) {
     const blockHeight = block.blockHeight;
     const blockTimestamp = block.header().timestampNanosec;
@@ -26,6 +27,7 @@ async function getBlock(block, context) {
     nearSocialPosts.forEach((postAction) => {
       const accountId = Object.keys(postAction.args.data)[0];
       if (postAction.args.data[accountId].index.like) {
+        hasLikes = true;
         const likeData = {
           account_id: accountId,
           block_height: blockHeight,
@@ -37,6 +39,8 @@ async function getBlock(block, context) {
         formatted_likes.push(JSON.stringify(likeData));
       }
     });
-    await context.set(blockHeight.toString(), JSON.stringify(formatted_likes));
+    if (hasLikes) {
+      await context.set(blockHeight.toString(), JSON.stringify(formatted_likes));
+    }
   }
 }
