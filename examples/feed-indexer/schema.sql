@@ -6,8 +6,7 @@ CREATE TABLE
     "receipt_id" VARCHAR NOT NULL,
     "content" TEXT NOT NULL,
     "block_timestamp" DECIMAL(20, 0) NOT NULL,
-    "accounts_liked" JSONB NOT NULL DEFAULT "[]",
-    "likes_count" DECIMAL(20, 0) NOT NULL DEFAULT 0,
+    "accounts_liked" JSONB NOT NULL DEFAULT '[]',
     "last_comment_timestamp" DECIMAL(20, 0),
     CONSTRAINT "posts_pkey" PRIMARY KEY ("id")
   );
@@ -43,7 +42,7 @@ CREATE UNIQUE INDEX "comments_post_id_account_id_block_height_key" ON "comments"
 );
 
 CREATE INDEX
-  "posts_block_timestamp" ON "posts" ("block_timestamp" DESC);
+  "posts_last_comment_timestamp_idx" ON "posts" ("last_comment_timestamp" DESC);
 
 ALTER TABLE
   "comments"
