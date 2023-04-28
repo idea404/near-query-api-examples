@@ -1,0 +1,16 @@
+query {
+  roshaan_near_feed_indexer_posts (
+    where: {
+      block_timestamp: {
+        _gt: "1923456000",
+        _lt: "1923454240"
+      }
+    },
+    order_by: { accounts_liked: desc },
+    limit: 10
+  ) {
+    id
+    content
+    accounts_liked
+  }
+}
