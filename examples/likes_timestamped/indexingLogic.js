@@ -27,6 +27,7 @@ async function getBlock(block, context) {
     nearSocialPosts.forEach((postAction) => {
       const accountId = Object.keys(postAction.args.data)[0];
       if (postAction.args.data[accountId].index.like) {
+        context.log(`Found like for post ${JSON.stringify(postAction.args)} by ${accountId}`);
         hasLikes = true;
         const likeData = {
           account_id: accountId,
