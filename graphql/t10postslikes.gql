@@ -1,0 +1,16 @@
+query {
+  somepublicaddress_near_top10postslikes_posts (
+    where: {
+      block_timestamp: {
+        _gt: "1923456000",
+        _lt: "1923454240"
+      }
+    },
+    order_by: { likes_count: desc },
+    limit: 10
+  ) {
+    id
+    content
+    likes_count
+  }
+}

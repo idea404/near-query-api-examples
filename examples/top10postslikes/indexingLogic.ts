@@ -31,8 +31,8 @@ async function getBlock(block: Block, context) {
       };
 
       // Call GraphQL mutation to insert a new post
-      await context.graphql(
-        `mutation createPost($post: somepublicaddress_near_top10postslikes_posts_insert_input!){
+      await context.graphql(`
+      mutation createPost($post: somepublicaddress_near_top10postslikes_posts_insert_input!){
           insert_somepublicaddress_near_top10postslikes_posts_one(
             object: $post
           ) {
@@ -185,7 +185,7 @@ async function getBlock(block: Block, context) {
               break;
           }
         } catch (e) {
-          console.log(`Failed to store like to post ${itemAuthor}/${itemBlockHeight} as we don't have it stored in the first place.`);
+          console.log(`Failed to store like to post ${itemAuthor}/${itemBlockHeight} as we don't have it stored in the first place. Error ${e}`);
         }
         break;
       case "comment":
@@ -215,8 +215,8 @@ async function getBlock(block: Block, context) {
             _set: {accounts_liked: $likedAccount, likes_count: ${accountsLiked.length}}
           ) {
           returning {
-            id
-          }
+              id
+            }
           }
         }`,
         {
