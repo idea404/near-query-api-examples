@@ -1,16 +1,14 @@
-query {
-  roshaan_near_feed_indexer_posts (
-    where: {
-      block_timestamp: {
-        _gt: "1923456000",
-        _lt: "1923454240"
+query IndexerQuery {
+  roshaan_near_feed_indexer_post_likes_aggregate(distinct_on: post_id) {
+    nodes {
+      post {
+        id
+        post_likes_aggregate {
+          aggregate {
+            count
+          }
+        }
       }
-    },
-    order_by: { accounts_liked: desc },
-    limit: 10
-  ) {
-    id
-    content
-    accounts_liked
+    }
   }
 }
