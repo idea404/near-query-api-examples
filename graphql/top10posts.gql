@@ -1,6 +1,5 @@
 query IndexerQuery {
   roshaan_near_feed_indexer_post_likes_aggregate(
-    where: {block_timestamp: {}}
     order_by: {post: {post_likes_aggregate: {count: desc}}}
   ) {
     nodes {
