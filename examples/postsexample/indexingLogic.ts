@@ -49,7 +49,7 @@ async function getBlock(block: Block, context) {
             };
             await context.graphql(`
               mutation CreatePost($post: PostInput!) {
-                insert_somepublicaddress_near_mediumexample_posts_one(
+                insert_somepublicaddress_near_postsexample_posts_one(
                   object: $post
                 ) {
                   account_id
