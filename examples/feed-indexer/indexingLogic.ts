@@ -429,7 +429,8 @@ async function getBlock(block: Block, context) {
             postAction.receiptId,
             postAction.args.data[accountId].post.main
           );
-        } else if (
+        } 
+        else if (
           postAction.args.data[accountId].post &&
           Object.keys(postAction.args.data[accountId].post).includes("comment")
         ) {
@@ -441,7 +442,8 @@ async function getBlock(block: Block, context) {
             postAction.receiptId,
             postAction.args.data[accountId].post.comment
           );
-        } else if (
+        } 
+        else if (
           Object.keys(postAction.args.data[accountId]).includes("index")
         ) {
           // Probably like or unlike action is happening
