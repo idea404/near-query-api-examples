@@ -52,14 +52,15 @@ async function getBlock(block: Block, context) {
           await createPost(postId, accountId, blockHeight, blockTimestamp, postAction.receiptId, postAction.args.data[accountId].post.main);
         }
         if (isComment) {
-          const isHypeComment = postAction.args.data[accountId].post.comment.includes("PEPE") || postAction.args.data[accountId].post.comment.includes("DOGE");
+          const commentString = JSON.parse(postAction.args.data[accountId].post.comment);
+          const isHypeComment = commentString.includes("PEPE") || commentString.includes("DOGE");
           if (!isHypeComment) {
             return;
           }
           console.log("Creating a comment...");
           const postBlockHeight = postAction.args.data[accountId].post.blockHeight;
           const postId = `${accountId}:${postBlockHeight}`;
-          await createComment(accountId, postId, blockHeight, blockTimestamp, postAction.receiptId, postAction.args.data[accountId].post.comment);
+          await createComment(accountId, postId, blockHeight, blockTimestamp, postAction.receiptId, commentString);
         }
       })
     );
